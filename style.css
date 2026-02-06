@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Özel Marka Renklerimizi Burada Tanımlıyoruz */
+@theme {
+  --color-brand-blue: #1E1B4B;
+  --color-brand-cream: #FAF9F6;
+  --color-brand-beige: #E8DCCA;
+  --color-brand-darkBeige: #C09066;
+  --color-brand-lightBlue: #E0E7FF;
+}
+
+/* Tarayıcıda yumuşak kaydırma ve genel ayarlar */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-brand-cream);
+}
