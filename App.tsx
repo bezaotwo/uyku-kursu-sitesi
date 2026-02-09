@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,10 +7,23 @@ import Services from './components/Services';
 import Articles from './components/Articles';
 import Pricing from './components/Pricing';
 import Footer from './components/Footer';
+import LegalModal from './components/LegalModal';
+import CookieBanner from './components/CookieBanner';
 
 function App() {
+  const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
+  const [legalModalContent, setLegalModalContent] = useState<{ title: string, key: 'distance' | 'privacy' | 'kvkk' | 'refund' | null }>({
+    title: '',
+    key: null
+  });
+
+  const openLegal = (title: string, key: 'distance' | 'privacy' | 'kvkk' | 'refund') => {
+    setLegalModalContent({ title, key });
+    setIsLegalModalOpen(true);
+  };
+
   return (
-    <div className="min-h-screen bg-brand-cream font-sans">
+    <div className="min-h-screen bg-brand-cream font-sans relative">
       <Navbar />
       <main>
         <Hero />
@@ -39,7 +52,16 @@ function App() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer openLegal={openLegal} />
+
+      <LegalModal
+        isOpen={isLegalModalOpen}
+        onClose={() => setIsLegalModalOpen(false)}
+        title={legalModalContent.title}
+        contentKey={legalModalContent.key}
+      />
+
+      <CookieBanner onOpenPrivacyPolicy={() => openLegal('Gizlilik Politikası', 'privacy')} />
     </div>
   );
 }

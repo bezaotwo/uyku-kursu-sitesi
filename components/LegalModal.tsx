@@ -25,11 +25,16 @@ const LegalModal: React.FC<LegalModalProps> = ({ isOpen, onClose, title, content
     ),
     privacy: (
       <div className="space-y-4 text-sm text-gray-600">
-        <p>Pedagojik Uyku olarak gizliliğinize önem veriyoruz.</p>
-        <h3 className="font-bold text-gray-900">Toplanan Bilgiler</h3>
-        <p>Sitemiz üzerinden yapılan işlemlerde ad, soyad, telefon ve e-posta gibi iletişim bilgileri talep edilmektedir. Bu bilgiler sadece hizmetin ifası için kullanılır.</p>
-        <h3 className="font-bold text-gray-900">Üçüncü Taraflar</h3>
-        <p>Kişisel bilgileriniz yasal zorunluluklar haricinde üçüncü şahıslarla paylaşılmamaktadır. Ödeme işlemleri Shopier altyapısı üzerinden güvenli bir şekilde gerçekleşir.</p>
+        <p><strong>Son Güncelleme:</strong> 6 Şubat 2026.</p>
+        <p>pedagojikuyku.com ('Site') olarak, ziyaretçilerimizin kişisel verilerinin güvenliğine büyük önem veriyoruz.</p>
+
+        <p><strong className="text-gray-900">1. Toplanan Bilgiler:</strong> Sitemiz istatistiksel amaçlı standart log kayıtları tutar (IP adresi, tarayıcı türü vb.). Bu veriler anonimdir ve kimliğinizi belirlemez.</p>
+
+        <p><strong className="text-gray-900">2. Çerezler ve Reklamlar (Google AdSense):</strong> Google dahil üçüncü taraf tedarikçiler, kullanıcıların web sitemize veya diğer web sitelerine yaptığı önceki ziyaretlere dayalı olarak reklam yayınlamak için çerezleri kullanmaktadır. Tarayıcı ayarlarınızdan çerezleri dilediğiniz zaman yönetebilirsiniz.</p>
+
+        <p><strong className="text-gray-900">3. Ödeme ve Güvenlik (Shopier):</strong> Sitemiz üzerinden gerçekleştirilen tüm ödeme işlemleri, Shopier ödeme altyapısı üzerinden 256-bit SSL şifreleme ile güvenli bir şekilde gerçekleşir. Kredi kartı bilgileriniz sunucularımızda saklanmaz, doğrudan Shopier güvencesi altındadır.</p>
+
+        <p><strong className="text-gray-900">4. İletişim:</strong> Her türlü sorunuz için pedagojikuyku@gmail.com mail adresinden veya Instagram: @pedagojikuyku hesabından bize ulaşabilirsiniz.</p>
       </div>
     ),
     kvkk: (
