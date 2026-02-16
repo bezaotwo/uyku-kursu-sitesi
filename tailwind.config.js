@@ -22,6 +22,7 @@ export default {
           cream: '#FAF9F6',
           beige: '#E8DCCA',
           darkBeige: '#C09066',
+          gold: '#C09066',
           lightBlue: '#E0E7FF',
         }
       }

@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import AuthModal from './auth/AuthModal';
 // SENİN KLASÖR YAPINA GÖRE DOĞRU YOL BUDUR:
 import logo from '../assets/nobg-pedagojikuykulogo.png';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState<'login' | 'register'>('login');
+  const { user, isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +28,11 @@ const Navbar: React.FC = () => {
     { name: 'Eğitimler', href: '#pricing' },
     { name: 'İletişim', href: '#contact' },
   ];
+
+  const openAuthModal = (mode: 'login' | 'register') => {
+    setAuthModalMode(mode);
+    setIsAuthModalOpen(true);
+  };
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
@@ -52,13 +62,43 @@ const Navbar: React.FC = () => {
               </a>
             ))}
 
-            <a href="#pricing" className="bg-brand-blue text-white px-6 py-2 rounded-full font-bold hover:bg-indigo-900 transition-colors">
-              Giriş Yap
-            </a>
+            {isAuthenticated ? (
+              <div className="flex items-center gap-4">
+                <span className="text-gray-700 font-medium">
+                  Merhaba, {user?.first_name || user?.email}
+                </span>
+                <button
+                  onClick={logout}
+                  className="bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-bold hover:bg-gray-300 transition-colors"
+                >
+                  Çıkış Yap
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => openAuthModal('login')}
+                  className="border-2 border-brand-blue text-brand-blue px-6 py-2 rounded-full font-bold hover:bg-brand-blue hover:text-white transition-all duration-300"
+                >
+                  Giriş Yap
+                </button>
+                <button
+                  onClick={() => openAuthModal('register')}
+                  className="bg-brand-gold text-brand-blue px-6 py-2 rounded-full font-bold hover:bg-opacity-90 transition-colors shadow-md hover:shadow-lg"
+                >
+                  Üye Ol
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Mobil Menü Butonu */}
           <div className="md:hidden flex items-center gap-4">
+            {isAuthenticated && (
+              <span className="text-gray-700 text-sm">
+                {user?.first_name || 'Kullanıcı'}
+              </span>
+            )}
             <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-brand-blue">
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -79,8 +119,47 @@ const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
+
+          {isAuthenticated ? (
+            <button
+              onClick={() => {
+                logout();
+                setIsMobileMenuOpen(false);
+              }}
+              className="bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-bold hover:bg-gray-300 transition-colors"
+            >
+              Çıkış Yap
+            </button>
+          ) : (
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={() => {
+                  openAuthModal('login');
+                  setIsMobileMenuOpen(false);
+                }}
+                className="border-2 border-brand-blue text-brand-blue px-6 py-2 rounded-full font-bold hover:bg-brand-blue hover:text-white transition-all duration-300"
+              >
+                Giriş Yap
+              </button>
+              <button
+                onClick={() => {
+                  openAuthModal('register');
+                  setIsMobileMenuOpen(false);
+                }}
+                className="bg-brand-gold text-brand-blue px-6 py-2 rounded-full font-bold hover:bg-opacity-90 transition-colors shadow-md hover:shadow-lg"
+              >
+                Üye Ol
+              </button>
+            </div>
+          )}
         </div>
       )}
+
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        initialMode={authModalMode}
+      />
     </nav>
   );
 };
