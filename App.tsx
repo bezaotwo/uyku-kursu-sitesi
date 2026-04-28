@@ -30,10 +30,10 @@ function App() {
         <main>
           <Hero />
           <About />
-          <MissionVision />
           <Services />
-          <Articles />
           <Pricing />
+          <Articles />
+          <MissionVision />
 
           {/* İletişim / Yönlendirme Alanı */}
           <section id="contact" className="py-20 bg-white">

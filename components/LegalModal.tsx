@@ -48,6 +48,9 @@ const LegalModal: React.FC<LegalModalProps> = ({ isOpen, onClose, title, content
     refund: (
       <div className="space-y-4 text-sm text-gray-600">
         <h3 className="font-bold text-gray-900">İptal ve İade Koşulları</h3>
+        <p className="font-medium text-gray-900">
+          Süreç başlatıldıktan sonra ücret iadesi yapılmamaktadır.
+        </p>
         <ul className="list-disc pl-5 space-y-2">
           <li><strong>Danışmanlık Hizmetleri:</strong> Randevu saatine 24 saat kala yapılan iptallerde ücret iadesi yapılmaz veya erteleme hakkı saklı tutulur.</li>
           <li><strong>Dijital Ürünler:</strong> Video eğitim ve e-kitap gibi dijital ürünler satın alındığı anda teslim edilmiş sayılır ve iadesi mümkün değildir.</li>

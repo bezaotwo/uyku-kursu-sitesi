@@ -51,9 +51,10 @@ const Services: React.FC = () => {
         {/* Grid Layout - Improved Spacing */}
         <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
           {services.map((service, index) => (
-            <div
+            <a
               key={index}
-              className="group relative p-8 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 hover:border-brand-darkBeige/50 hover:bg-white/10 transition-all duration-300 w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex flex-col items-start text-left hover:-translate-y-1"
+              href="#pricing"
+              className="group relative p-8 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 hover:border-brand-darkBeige/50 hover:bg-white/10 transition-all duration-300 w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex flex-col items-start text-left hover:-translate-y-1 cursor-pointer block"
             >
               <div className="w-14 h-14 bg-brand-darkBeige/20 rounded-2xl flex items-center justify-center mb-6 text-brand-darkBeige group-hover:text-white group-hover:bg-brand-darkBeige transition-all duration-300">
                 <service.icon size={28} strokeWidth={1.5} />
@@ -63,7 +64,7 @@ const Services: React.FC = () => {
               <p className="text-indigo-100/70 text-base leading-relaxed mb-4">
                 {service.description}
               </p>
-            </div>
+            </a>
           ))}
         </div>
 

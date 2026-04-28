@@ -66,7 +66,7 @@ const Footer: React.FC<FooterProps> = ({ openLegal }) => {
           <div>
             <h3 className="font-bold text-lg mb-4 text-brand-beige">İletişim</h3>
             <ul className="space-y-2 text-indigo-200 text-sm">
-              <li>info@pedagojikuyku.com</li>
+              <li>pedagojikuyku@gmail.com</li>
               <li>İstanbul, Türkiye</li>
             </ul>
           </div>

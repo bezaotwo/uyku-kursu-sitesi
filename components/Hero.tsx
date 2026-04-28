@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const images = [
+  '/mainpic1.webp',
+  '/mainpic2.webp'
+];
+
 const Hero: React.FC = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 5000); // Her 5 saniyede bir görsel değişimi
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-[#FDFBF7] to-white">
 
@@ -75,16 +89,22 @@ const Hero: React.FC = () => {
             viewport={{ once: true }}
             className="w-full lg:w-1/2 relative"
           >
-            {/* Main Image Container - Cleaner Border Radius */}
-            <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-brand-blue/10">
-              <img
-                src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=1200&h=1000&auto=format&fit=crop"
-                alt="Anne ve uyuyan bebek"
-                className="w-full h-auto object-cover"
-              />
+            {/* Main Image Container - Cleaner Border Radius, aspect ratio for mobile & desktop */}
+            <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-brand-blue/10 aspect-[4/5] sm:aspect-[4/5] md:aspect-square lg:aspect-[4/5] w-full bg-brand-cream/50">
+              {images.map((src, index) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt={`Bebek uyku kursu ${index + 1}`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-[1500ms] ease-in-out ${index === currentImageIndex
+                    ? 'opacity-100 scale-100'
+                    : 'opacity-0 scale-105'
+                    }`}
+                />
+              ))}
 
               {/* Overlay Gradient for depth if needed */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
             </div>
 
             {/* Abstract Shape - Simplified */}
